@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weekly-photo-reminder-bot"
+version = "0.1.0"
+description = "Weekly photo reminders for Telegram groups"
+requires-python = ">=3.12"
+dependencies = [
+    "asyncpg>=0.29,<1.0",
+    "python-telegram-bot>=21.0,<23.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9.0",
+    "pytest-asyncio>=0.23,<1.0",
+    "ruff>=0.6,<1.0",
+]
+
+[project.scripts]
+weekly-photo-reminder = "weekly_reminder.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
