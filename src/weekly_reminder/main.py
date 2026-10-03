@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 
 from telegram.ext import Application
 
@@ -53,6 +54,10 @@ def build_application(settings: Settings) -> Application:
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
+    print(
+        "TELEGRAM_BOT_TOKEN configured:",
+        bool(os.getenv("TELEGRAM_BOT_TOKEN")),
+    )
     settings = Settings.from_env()
     application = build_application(settings)
     application.run_polling(allowed_updates=["message"])
